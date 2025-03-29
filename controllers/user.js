@@ -32,14 +32,7 @@ async function handleUserCreate(req, res) {
             role:body.role,
             isVoted:body.isVoted
         });
-        // // Generate a payload and token
-        // const payload = {
-        //     id: response.id,
-        //     username: response.username
-        // };
-        // console.log(payload);
-        // Assuming generateToken is defined elsewhere to generate JWT
-        // const token = generateToken(payload);
+       
         // Respond with success message and token
         res.status(201).json({ msg: "Success", response: response,});
     }catch (err) {
@@ -70,7 +63,7 @@ async function handleUserLogin(req,res){
         return res.status(404).json({err:'invalid aadharNumber or password'})
     }
         const payload = {
-            id:user.id
+            id:user.id,
         }
 
         const token = generateToken(payload)
@@ -86,12 +79,16 @@ async function handleUserLogin(req,res){
 
 
 
+
 async function handleUserProfile(req,res){
      try{
           const userData = req.user;
+        //   console.log(userData)
           const userId = userData.id;
+        //   console.log(userId)
           const user = await User.findById(userId)
-          res.status(200).json({user}) 
+        //   console.log(user)
+          res.status(200).json({user})
         }catch(err){        
                 console.log(err)
                 res.status(400).json({msg:"internal server error"})
@@ -102,6 +99,7 @@ async function handleUpdatePassword(req,res){
 
     try {
         const userId= req.user.id;  //extract the user from token
+        console.log(userId)
         const {currentPassword,newpassword} = req.body
 
         // Ensure the userId is a valid ObjectId before querying
