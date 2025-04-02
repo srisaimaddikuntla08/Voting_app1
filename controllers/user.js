@@ -15,6 +15,8 @@ async function handleUserData(req,res){
      
 }
 
+
+//creating User 
 async function handleUserCreate(req, res) {
     const body = req.body;
     try {
@@ -48,9 +50,6 @@ async function handleUserCreate(req, res) {
 
 
 }
-
-
-
 
 async function handleUserLogin(req,res){
 

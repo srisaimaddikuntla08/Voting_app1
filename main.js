@@ -14,7 +14,7 @@ const {jwtAuthentication} = require("./jwt")
 connectDB(process.env.MONGO_URL)
 .then(()=>console.log("connected DB"))
 
-
+//to parse data form frontend to backend
 app.use(bodyParser.json());
 app.use(express.urlencoded({extended:false}))
 
